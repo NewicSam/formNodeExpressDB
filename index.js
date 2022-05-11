@@ -18,6 +18,18 @@ database.loadDatabase();
 
 
 /* Routes */
+app.get('/api', (request, response) => {
+ 
+    database.find({}, (err, data) => {
+
+        if (err) {
+            response.end();
+            return; 
+        }
+        response.json(data);
+    });
+});
+
 app.post('/api', (request, response) => {
     
     const data = request.body;
