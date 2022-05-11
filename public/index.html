@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Form</title>
+</head>
+<body>
+    
+    <h3>Data Form</h3>
+    <!-- <p>
+        latitude: <span id="lat"></span>°
+        <br>
+        longitude: <span id="lng"></span>°
+    </p> -->
+
+    <!-- firstname -->
+    <label for="firstname">Votre prénom</label><br>
+    <input id="firstname" placeholder="Prénom" /><br><hr>
+    <!-- lastname -->
+    <label for="lastname">Votre nom</label><br>
+    <input id="lastname" placeholder="Nom" /><br><hr>
+    <!-- email -->
+    <label for="email">Votre adresse e-mail</label><br>
+    <input id="email" placeholder="E-mail" /><br><hr>
+    <!-- phone -->
+    <label for="phone">Votre téléphone</label><br>
+    <input id="phone" placeholder="Téléphone" /><br><hr>
+
+    <button id="submit">submit</button>
+
+    <!-- <script src="../assets/app.js"></script> -->
+    <script>
+        // let lat, lng;
+
+        const button = document.getElementById('submit');
+        button.addEventListener('click', async event => {
+            const firstname = document.getElementById('firstname').value;
+            const lastname = document.getElementById('lastname').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            const data = { firstname, lastname, email, phone };
+            const options = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            };
+            const response = await fetch('/api', options);
+            const json = await response.json();
+            // console.log(json);
+        });
+
+        // if('geolocation' in navigator) {
+        //     console.log('geolocation available');
+
+        //     navigator.geolocation.getCurrentPosition(async position => {
+        //         // console.log(position);
+        //         lat = position.coords.latitude;
+        //         lng = position.coords.longitude;
+
+        //         document.getElementById('lat').textContent = lat;
+        //         document.getElementById('lng').textContent = lng;
+        //     });
+
+        // } else {
+        //     console.log('geolocation not available');
+        // }
+    </script>
+</body>
+</html>
